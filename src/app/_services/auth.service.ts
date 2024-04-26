@@ -25,6 +25,7 @@ export class AuthService {
 		const token = localStorage.getItem(AUTH_TOKEN_STRING);
 		if (!!token) {
 			this._isLoggedIn$.next(true);
+			this.loadUserData();
 		}
 	}
 
@@ -38,11 +39,7 @@ export class AuthService {
 				localStorage.setItem(AUTH_TOKEN_STRING, 'secret user auth token');
 			}
 
-			this._userData$.next({
-				id: 158,
-				firstname: 'Max',
-				lastname: 'Mustermann',
-			});
+			this.loadUserData();
 		}
 
 		return this.isLoggedIn$;
@@ -52,5 +49,13 @@ export class AuthService {
 		localStorage.removeItem(AUTH_TOKEN_STRING);
 		this._isLoggedIn$.next(false);
 		this._userData$.next(null);
+	}
+
+	private loadUserData() {
+		this._userData$.next({
+			id: 158,
+			firstname: 'Max',
+			lastname: 'Mustermann',
+		});
 	}
 }
