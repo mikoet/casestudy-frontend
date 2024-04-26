@@ -1,0 +1,58 @@
+<h1>Einloggen</h1>
+
+<form
+	class="login-form"
+	[formGroup]="loginForm"
+	(ngSubmit)="performLogin()"
+>
+
+	<div class="login-form__field field field--errorable">
+		<label class="field__component" for="username">Benutzername: </label>
+		<input class="field__component" id="username" type="text" formControlName="username">
+		@if (username.invalid && (username.dirty || username.touched)) {
+			@if (username.errors?.['minlength']) {
+				<div class="error-text">
+					Der Benutzername muss mindestens drei Zeichen lang sein.
+				</div>
+			}
+			@if (username.errors?.['required']) {
+				<div class="error-text">
+					Der Benutzername ist notwendig.
+				</div>
+			}
+		}
+	</div>
+
+	<div class="login-form__field field field--errorable">
+		<label class="field__component" for="password">Passwort: </label>
+		<input class="field__component" id="password" type="password" formControlName="password">
+		@if (password.invalid && (password.dirty || password.touched)) {
+			@if (password.errors?.['minlength']) {
+				<div class="error-text">
+					Das Passwort muss mindestens sechs Zeichen lang sein.
+				</div>
+			}
+			@if (password.errors?.['required']) {
+				<div class="error-text">
+					Das Passwort ist notwendig.
+				</div>
+			}
+		}
+	</div>
+
+	<div class="login-form__field field">
+		<label for="storeToken">Eingeloggt bleiben? </label>
+		<input id="storeToken" type="checkbox" formControlName="storeToken">
+	</div>
+
+	<button type="submit" [disabled]="!loginForm.valid">
+		Einloggen
+	</button>
+	
+	@if (isUsernameOrPasswordWrong) {
+		<div class="error-text">
+			Der Benutzername und/oder das Passwort sind ungültig.
+		</div>
+	}
+
+</form>

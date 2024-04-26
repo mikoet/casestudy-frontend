@@ -1,0 +1,11 @@
+@import 'screens';
+
+.content {
+	padding: 90px 25px 30px;
+}
+
+@media only screen and (min-width: $desktop-max-width) {
+	.content {
+		padding: 90px calc((100% - $desktop-max-width) / 2 + 25px) 30px;
+	}
+}

@@ -1,0 +1,21 @@
+<h1>Inhalte</h1>
+
+@if ((userData$ | async) ?? null; as userData) {
+	<h2>Willkommen</h2>
+	<p>Willkommen im internen Bereich, {{ userData.firstname + ' ' + userData.lastname }}.</p>
+}
+
+@if ((userContent$ | async) ?? null; as userContent) {
+	@if (userContent.quoteOfTheDay ?? false; as quoteOfTheDay) {
+		<h2>Zitat des Tages</h2>
+		<p>«{{ quoteOfTheDay.content }}»</p>
+		<p>– {{ quoteOfTheDay.author }}</p>
+	}
+
+	@if (userContent.catUrl ?? false; as catUrl) {
+		<h2>Zufallskatze</h2>
+		<img [src]="catUrl" />
+	}
+} @else {
+	<p>Lade Daten…</p>
+}

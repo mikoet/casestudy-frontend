@@ -1,0 +1,61 @@
+@import 'colors';
+
+.login-form {
+
+	width: 400px;
+
+	&__field {
+		width: 100%;
+
+		& label {
+			width: 100%;
+			min-width: 200px;
+		}
+	
+		& input[type=text],
+		& input[type=password] {
+			border-radius: 6px;
+			border: 1px solid $border-1;
+			font-size: 15px;
+			margin: 8px 0;
+			max-width: 240px;
+			padding: 12px 20px;
+			width: 100%;
+		}
+	}
+
+	& button[type=submit] {
+		background-color: $dark-background-1;
+		border-radius: 4px;
+		border: none;
+		color: $bright-text;
+		cursor: pointer;
+		font-size: 15px;
+		margin: 8px 0;
+		max-width: 240px;
+		padding: 12px 15px;
+		width: 100%;
+	}
+
+	& button[disabled]{
+		background-color: $border-1;
+		cursor: auto;
+	}
+}
+
+.field {
+	&__component {
+		width: 100%;
+	}
+
+	&--errorable {
+		display: flex;
+		flex-direction: column;
+		height: 105px;
+	}
+}
+
+.error-text {
+	color: $error-text;
+	font-size: 13px;
+}

@@ -1,0 +1,62 @@
+<div class="header">
+	<div class="header__title">
+		Case Study: Frontend Software-Entwickler (m/w/d) Angular
+	</div>
+
+	<nav class="header__navigation">
+		<a class="header__hamburger mobile-only" (click)="toggleMenu()">
+			<img src="/assets/images/hamburger.svg" alt="Navigationsmenü öffnen" class="menu pointer" id="menu">
+		</a>
+
+		<div class="header__nav-items" [ngClass]="{ 'hide-mobile': !isMenuOpen }">
+			<div id="exit" class="header__close mobile-only">
+				<img
+					src="/assets/images/close.svg"
+					alt="Navigationsmenü schließen"
+					(click)="toggleMenu()"
+				>
+			</div>
+
+			@for (item of items; track item.label) {
+				<div
+					class="header__item"
+					[routerLink]="item.routerLink"
+					routerLinkActive="header__item--active"
+					(click)="isMenuOpen && toggleMenu()"
+				>
+					{{ item.label }}
+				</div>
+			}
+
+			@if (authService.isLoggedIn$ | async) {
+				<div
+					class="header__item"
+					[routerLink]="[ '/user-content' ]"
+					routerLinkActive="header__item--active"
+					(click)="isMenuOpen && toggleMenu()"
+				>
+					Inhalte
+				</div>
+
+				<div
+					class="header__item"
+					[routerLink]="[ '/logout' ]"
+					routerLinkActive="header__item--active"
+					(click)="isMenuOpen && toggleMenu()"
+				>
+					Ausloggen
+				</div>
+			} @else {
+				<div
+					class="header__item"
+					[routerLink]="[ '/login' ]"
+					routerLinkActive="header__item--active"
+					(click)="isMenuOpen && toggleMenu()"
+				>
+					Einloggen
+				</div>
+			}
+		</div>
+	</nav>
+
+</div>

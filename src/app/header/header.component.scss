@@ -1,0 +1,118 @@
+@import 'colors';
+@import 'screens';
+
+.header {
+	align-items: center;
+	background-color: $dark-background-1;
+	display: flex;
+	padding: 0 25px;
+	position: fixed;
+	height: 80px;
+	left: 0;
+	right: 0;
+	top: 0;
+
+	&__title {
+		color: $bright-text;
+		flex: 1;
+		font-weight: bold;
+	}
+
+	&__hamburger {
+		align-items: center;
+		cursor: pointer;
+		display: flex;
+		height: 100%;
+		padding-left: 10px;
+
+		& > img {
+			width: 25px;
+		}
+	}
+
+	&__close {
+		padding: 0 20px 20px;
+		cursor: pointer;
+		text-align: right;
+
+		& img {
+			width: 20px;
+		}
+	}
+
+	&__navigation {
+		flex-direction: row;
+		height: 100%;
+	}
+
+	&__nav-items {
+		background: $dark-background-0;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		padding-top: 25px;
+		position: fixed;
+		right: 0;
+		text-align: left;
+		top: 0;
+		width: 45%;
+		z-index: 1000;
+	}
+
+	&__item {
+		align-items: center;
+		box-sizing: border-box;
+		color: $bright-text;
+		display: flex;
+		font-weight: bold;
+		height: auto;
+		padding: 12px;
+
+		&:hover {
+			background-color: $dark-background-2;
+			cursor: pointer;
+		}
+
+		&--active {
+			background-color: $dark-background-2;
+		}
+	}
+}
+
+.hide-mobile {
+	display: none;
+}
+
+@media only screen and (min-width: $desktop-min-width) {
+	.header {
+		&__nav-items {
+			background: none;
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+			padding-top: 0;
+			position: static;
+			width: auto;
+		}
+
+		&__item {
+			align-items: center;
+			box-sizing: border-box;
+			color: $bright-text;
+			display:flex;
+			font-weight: bold;
+			height: 100%;
+			padding: 12px;
+		}
+	}
+
+	.mobile-only {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: $desktop-max-width) {
+	.header {
+		padding: 0 calc((100% - $desktop-max-width) / 2 + 25px);
+	}
+}
